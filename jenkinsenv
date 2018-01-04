@@ -12,7 +12,7 @@ pipeline {
         stage("Run cmd") {
             steps {
                     echo "Hello, Dockerfile"
-                    python hello.py
+                    sh 'python hello.py'
                 }
             }
     }
