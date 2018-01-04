@@ -1,18 +1,27 @@
 pipeline {
-    agent any
-    environment {
-        Name = "Nitin Srivastava"
-    }
-    stages {
-        stage("Conditons") {
-            when {
-                not {
-                    environment name:"Name", value:"Nitin Srivastava"
-                }
-            }
-            steps {
-                echo "Name is $Name"
-            }
+    agent {
+        node {
+            label 'Master && CentOS'
         }
     }
+
+    stages {
+        agent {
+            dockerfile {
+                filename 'Dockerfile.build'
+                dir 'src'
+                label 'Linux CentOS'
+                additionalBuildArgs '--build-arg version=1.0.2'
+                }
+            }
+        stages {
+            stage("Run cmd") {
+                steps {
+                    echo "Hello, Dockerfile"
+                }
+            }
+        }
+
+    }
 }
+
