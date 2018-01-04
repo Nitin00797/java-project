@@ -7,12 +7,18 @@ pipeline {
 
     stages {
         agent {
+            node {
+                label 'Linux CentOS'
+            }
+        }
+        stage ("Dockerfile"){
+            steps {
             dockerfile {
                 filename 'Dockerfile.build'
                 dir 'src'
-                label 'Linux CentOS'
                 additionalBuildArgs '--build-arg version=1.0.2'
                 }
+              }
             }
             stage("Run cmd") {
                 steps {
