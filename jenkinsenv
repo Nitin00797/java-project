@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    stages {
+        stage("Foo") {
+            steps {
+                echo "First Stage Check"
+            }
+        }
+        stage("Evaluate Master") {
+            when {
+                branch "master"
+            }
+            steps {
+                echo "This is a master branch"
+            }
+        }
+        stage("Evaluate Slave") {
+            when {
+                branch "development"
+           }
+           steps {
+               echo "This is a development branch"
+           }
+        }
+    }
+}
