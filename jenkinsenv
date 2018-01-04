@@ -1,26 +1,16 @@
 pipeline {
     agent any
+    environment {
+        Name = "Nitin Srivastava"
+    }
     stages {
-        stage("Foo") {
-            steps {
-                echo "First Stage Check"
-            }
-        }
-        stage("Evaluate Master") {
+        stage("Conditons") {
             when {
-                branch "master"
+                environment name:"Name", value:"Nitin Srivastava"
             }
             steps {
-                echo "This is a master branch"
+                echo "Name is $Name"
             }
-        }
-        stage("Evaluate Slave") {
-            when {
-                branch "development"
-           }
-           steps {
-               echo "This is a development branch"
-           }
         }
     }
 }
