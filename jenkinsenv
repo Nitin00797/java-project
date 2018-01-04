@@ -1,27 +1,16 @@
 pipeline {
     agent {
-        node {
-            label 'Master && CentOS'
+            dockerfile {
+                 filename 'Dockerfile.build'
+                 dir 'src'
+                 additionalBuildArgs '--build-arg version=1.0.2'
+            }
+
         }
-    }
 
     stages {
-        agent {
-            node {
-                label 'Linux CentOS'
-            }
-        }
-        stage ("Dockerfile"){
+        stage("Run cmd") {
             steps {
-            dockerfile {
-                filename 'Dockerfile.build'
-                dir 'src'
-                additionalBuildArgs '--build-arg version=1.0.2'
-                }
-              }
-            }
-            stage("Run cmd") {
-                steps {
                     echo "Hello, Dockerfile"
                 }
             }
