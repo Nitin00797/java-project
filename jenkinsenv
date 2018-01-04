@@ -12,8 +12,8 @@ pipeline {
 
                     dir("combined") {
                         sh 'echo $FOO > foo.txt'
-                        sh 'echo $FTP_USERNAME >> foo.txt'
-                        sh 'echo $FTP_PASSWORD >> foo.txt'
+                        sh 'echo $FTP_USERNAME >> foo_user.txt'
+                        sh 'echo $FTP_PASSWORD >> foo_passwd.txt'
                         archive "**/*.txt"
                     }
                 }
