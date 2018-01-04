@@ -1,12 +1,23 @@
 pipeline {
-    agent {
-      docker { image 'node:7-alpine' }
-      }
-                    stages {
-                            stage('Test') {
-                                        steps {
-                                                        sh 'node --version'
-                                                                    }
-                                                                            }
-                                                                                }
-                                                                                }
+    agent none
+    stages {
+        stage("foo") {
+            steps {
+                echo "Hello World"
+            }
+        }
+    }
+    post {
+        always {
+            echo "Runs Always"
+        }
+        changed {
+            echo "Runs on Change"
+        }
+        success {
+            echo "Successful Build"
+        }
+    }
+
+}
+
