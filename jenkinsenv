@@ -1,0 +1,24 @@
+pipeline {
+    environment {
+        FOO=credentials("adminFTP")
+    }
+    agent any {
+        stages {
+            stage("First Stage") {
+                steps {
+                    sh 'echo "FOO is $FOO"'
+                    sh 'echo "FTP_USERNAME is $FTP_USERNAME"'
+                    sh 'echo "FTP_PASSWORD is $FTP_PASSWORD"'
+
+                    dir("combined") {
+                        sh 'echo $FOO > foo.txt'
+                        sh 'echo $FTP_USERNAME >> foo.txt'
+                        sh 'echo $FTP_PASSWORD >> foo.txt'
+                        archive "**/*.txt"
+                    }
+                }
+            }
+        }
+    }
+}
+
