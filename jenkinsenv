@@ -6,7 +6,9 @@ pipeline {
     stages {
         stage("Conditons") {
             when {
-                environment name:"Name", value:"Nitin Srivastava"
+                not {
+                    environment name:"Name", value:"Nitin Srivastava"
+                }
             }
             steps {
                 echo "Name is $Name"
