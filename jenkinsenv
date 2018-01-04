@@ -2,7 +2,7 @@ pipeline {
     environment {
         FOO=credentials("adminFTP")
     }
-    agent any {
+    agent any
         stages {
             stage("First Stage") {
                 steps {
@@ -19,6 +19,5 @@ pipeline {
                 }
             }
         }
-    }
 }
 
