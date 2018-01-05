@@ -11,16 +11,10 @@ pipeline {
             }
         }
         steps {
-            echo "Please run bro"
+            echo "If you keep on working like this you will acheive results"
+            sh 'python hello.py'
         }
-        }
-
-        stage("Run cmd") {
-            steps {
-                    echo "Hello, Dockerfile"
-                    sh 'python hello.py'
-                }
-            }
+      }
     }
 }
 
