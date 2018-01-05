@@ -1,14 +1,16 @@
 pipeline {
-    agent {
-            dockerfile {
-                 filename 'Dockerfile.build'
-                 dir 'src'
-                 additionalBuildArgs '--build-arg version=1.0.2'
-            }
-
-        }
+    agent any {
+    }
 
     stages {
+        agent {
+            dockerfile {
+            filename 'Dockerfile.build'
+            dir 'src'
+            additionalBuildArgs '--build-arg version=1.0.2'
+            }
+        }
+
         stage("Run cmd") {
             steps {
                     echo "Hello, Dockerfile"
