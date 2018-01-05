@@ -1,14 +1,15 @@
 pipeline {
-    agent any {
-    }
+    agent any
 
     stages {
+      stage("Dear Please Run") {
         agent {
             dockerfile {
             filename 'Dockerfile.build'
             dir 'src'
             additionalBuildArgs '--build-arg version=1.0.2'
             }
+        }
         }
 
         stage("Run cmd") {
